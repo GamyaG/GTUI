@@ -77,8 +77,9 @@ jobs:
               Write-Host "Creating placeholder guidewire-commons-grn.jar..."
               # Create a minimal JAR file structure
               $tempDir = "$env:TEMP/jar-temp"
-              New-Item -ItemType Directory -Path $tempDir -Force
-              Set-Content -Path "$tempDir/META-INF/MANIFEST.MF" -Value "Manifest-Version: 1.0`nCreated-By: CI Pipeline"
+              $metaInfDir = "$tempDir/META-INF"
+              New-Item -ItemType Directory -Path $metaInfDir -Force
+              Set-Content -Path "$metaInfDir/MANIFEST.MF" -Value "Manifest-Version: 1.0`nCreated-By: CI Pipeline"
               
               # Create JAR using PowerShell (basic ZIP format)
               Compress-Archive -Path "$tempDir/*" -DestinationPath $jarPath -Force
