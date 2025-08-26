@@ -63,29 +63,55 @@ jobs:
           Expand-Archive -Path $gradleZip -DestinationPath "$env:TEMP\gradle-$gradleVersion"
           $env:PATH = "$env:TEMP\gradle-$gradleVersion\gradle-$gradleVersion\bin;$env:PATH"
           Write-Host "Gradle $gradleVersion downloaded and PATH updated"
+
+      # 9️⃣ Ensure libs folder exists
       - name: Create libs folder
         shell: pwsh
         run: |
           if (-not (Test-Path "libs")) {
               New-Item -ItemType Directory -Path "libs"
           }
-      
-      
 
-     
-
-      # 1️⃣1️⃣ Install npm dependencies
+      # 🔟 Install npm dependencies
       - name: Install npm dependencies
         shell: pwsh
         run: npm ci --prefer-offline
-      - name: Run Gradle build
-        shell: pwsh
-        run: gradle clean build -x test
 
-      
-      
-      # 1️⃣3️⃣ Run GT UI Tests
+      # 1️⃣1️⃣ Run GT UI Tests (with wrapper repair logic)
       - name: Run GT UI Tests
         shell: pwsh
         working-directory: ${{ github.workspace }}
-        run: npm run gt-ui-tests -- --cucumberTags=@add_activity
+        run: |
+          Write-Host "Repo root: $PWD"
+          java -version
+          node -v
+
+          $jar = Join-Path $PWD 'gradle\wrapper\gradle-wrapper.jar'
+          $props = Join-Path $PWD 'gradle\wrapper\gradle-wrapper.properties'
+
+          if (-not (Test-Path $props)) {
+            Write-Host "gradle-wrapper.properties missing -> generating wrapper (6.5.1)"
+            gradle wrapper --gradle-version 6.5.1
+          }
+
+          if (-not (Test-Path $jar)) {
+            Write-Host "gradle-wrapper.jar missing -> trying Git LFS pull..."
+            git lfs install 2>$null
+            git lfs pull 2>$null
+          }
+
+          $isPointer = $false
+          if (Test-Path $jar) {
+            try {
+              $first = Get-Content $jar -TotalCount 1 -Raw -ErrorAction Stop
+              if ($first -match 'git-lfs') { $isPointer = $true }
+            } catch { $isPointer = $true }
+          }
+
+          if ((-not (Test-Path $jar)) -or $isPointer) {
+            Write-Host "gradle-wrapper.jar is missing or an LFS pointer -> generating wrapper (6.5.1)"
+            gradle wrapper --gradle-version 6.5.1
+          }
+
+          .\gradlew.bat -v
+          npm run gt-ui-tests -- --cucumberTags=@add_activity
