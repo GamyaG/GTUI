@@ -91,7 +91,7 @@ jobs:
             Start-Sleep -Seconds 15
           }
 
-      # 1️⃣1️⃣ Run GT UI Tests (with wrapper repair logic)
+      # 1️⃣3️⃣ Run GT UI Tests (clean version)
       - name: Run GT UI Tests
         shell: pwsh
         working-directory: ${{ github.workspace }}
@@ -100,35 +100,13 @@ jobs:
           java -version
           node -v
 
-          $jar = Join-Path $PWD 'gradle\wrapper\gradle-wrapper.jar'
-          $props = Join-Path $PWD 'gradle\wrapper\gradle-wrapper.properties'
-
-          # Point to the manually downloaded Gradle 6.5.1
-          $gradleBin = "$env:TEMP\gradle-6.5.1\gradle-6.5.1\bin\gradle.bat"
-
-          if (-not (Test-Path $props)) {
-            Write-Host "gradle-wrapper.properties missing -> generating wrapper (6.5.1) with local Gradle"
-            & $gradleBin wrapper --gradle-version 6.5.1
+          # Check wrapper jar
+          if (-not (Test-Path .\gradle\wrapper\gradle-wrapper.jar)) {
+            throw "gradle-wrapper.jar missing! Please commit it into repo (not via Git LFS)."
           }
 
-          if (-not (Test-Path $jar)) {
-            Write-Host "gradle-wrapper.jar missing -> trying Git LFS pull..."
-            git lfs install 2>$null
-            git lfs pull 2>$null
-          }
-
-          $isPointer = $false
-          if (Test-Path $jar) {
-            try {
-              $first = Get-Content $jar -TotalCount 1 -Raw -ErrorAction Stop
-              if ($first -match 'git-lfs') { $isPointer = $true }
-            } catch { $isPointer = $true }
-          }
-
-          if ((-not (Test-Path $jar)) -or $isPointer) {
-            Write-Host "gradle-wrapper.jar is missing or an LFS pointer -> regenerating wrapper (6.5.1)"
-            & $gradleBin wrapper --gradle-version 6.5.1
-          }
-
+          # Quick smoke test
           .\gradlew.bat -v
+
+          # Run tests
           npm run gt-ui-tests -- --cucumberTags=@add_activity
