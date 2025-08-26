@@ -107,19 +107,7 @@ jobs:
         shell: pwsh
         run: npm ci --prefer-offline
  
-      # 1️⃣2️⃣ Check URL accessibility
-      - name: Check URL accessibility
-        shell: pwsh
-        run: |
-          $url = "https://cc-dev-gwcpdev.valuemom.zeta1-andromeda.guidewire.net/ClaimCenter.do"
-          try {
-              $response = Invoke-WebRequest -Uri $url -Method Head -TimeoutSec 30
-              Write-Host "✅ URL is accessible: $url (Status: $($response.StatusCode))"
-          } catch {
-              Write-Host "❌ URL is not accessible: $url"
-              Write-Host "Error: $($_.Exception.Message)"
-              exit 1
-          }
+      
  
       # 1️⃣3️⃣ Run GT UI Tests
       - name: Run GT UI Tests
