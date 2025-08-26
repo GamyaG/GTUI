@@ -35,7 +35,7 @@ jobs:
           java-version: '11'
           distribution: 'corretto'
 
-      # 5️⃣ Setup Node.js 16.3.0
+      # 5️⃣ Setup Node.js 16.3.0 with npm cache
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -72,10 +72,24 @@ jobs:
               New-Item -ItemType Directory -Path "libs"
           }
 
-      # 🔟 Install npm dependencies
-      - name: Install npm dependencies
+      # 🔟 Install npm dependencies with retry
+      - name: Install dependencies with retry
         shell: pwsh
-        run: npm ci --prefer-offline
+        run: |
+          $maxRetries = 5
+          for ($i = 1; $i -le $maxRetries; $i++) {
+            try {
+              npm ci
+              if ($LASTEXITCODE -eq 0) {
+                Write-Host "npm ci succeeded"
+                break
+              }
+            } catch {
+              Write-Host "npm ci failed, attempt $i of $maxRetries"
+            }
+            if ($i -eq $maxRetries) { exit 1 }
+            Start-Sleep -Seconds 15
+          }
 
       # 1️⃣1️⃣ Run GT UI Tests (with wrapper repair logic)
       - name: Run GT UI Tests
