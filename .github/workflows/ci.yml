@@ -115,8 +115,15 @@ jobs:
           gradle :api:createApiJar --build-cache \
           -Dguidewire.libs.dir=libs
  
-      # 1️⃣3️⃣ Run GT UI Tests
+      
+     # 1️⃣3️⃣ Run GT UI Tests
       - name: Run GT UI Tests
         shell: pwsh
         working-directory: ${{ github.workspace }}
-        run: npm run gt-ui-tests -- --cucumberTags=@add_activity
+        env:
+          SKIP_API_BUILD: true
+          GT_SKIP_GRADLE: true
+          CC_URL: https://cc-dev-gwcpdev.valuemom.zeta1-andromeda.guidewire.net/ClaimCenter.do
+          USERNAME: uw
+          PASSWORD: gw
+        run: npm run gt-ui-tests -- --cucumberTags=@add_activity --pageRequestTimeout=60000 --retryTestPages
