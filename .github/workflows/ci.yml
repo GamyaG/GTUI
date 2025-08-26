@@ -71,49 +71,26 @@ jobs:
               New-Item -ItemType Directory -Path "libs"
           }
           
-          # Create guidewire-commons-grn.jar if it doesn't exist
-          $jarPath = "libs/guidewire-commons-grn.jar"
-          if (-not (Test-Path $jarPath)) {
-              Write-Host "Creating placeholder guidewire-commons-grn.jar..."
-              # Create a minimal JAR file structure
-              $tempDir = "$env:TEMP/jar-temp"
-              $metaInfDir = "$tempDir/META-INF"
-              New-Item -ItemType Directory -Path $metaInfDir -Force
-              Set-Content -Path "$metaInfDir/MANIFEST.MF" -Value "Manifest-Version: 1.0`nCreated-By: CI Pipeline"
-              
-              # Create JAR using PowerShell (basic ZIP format)
-              Compress-Archive -Path "$tempDir/*" -DestinationPath $jarPath -Force
-              Remove-Item -Recurse -Force $tempDir
-              Write-Host "Created: $jarPath"
-          } else {
-              Write-Host "JAR already exists: $jarPath"
-          }
-      - name: Download guidewire-commons-grn.jar
-        shell: pwsh
-        run: |
-          $jarPath = "libs/guidewire-commons-grn.jar"
-          if (-not (Test-Path $jarPath)) {
-              Write-Host "Downloading guidewire-commons-grn.jar..."
-              Invoke-WebRequest -Uri "https://your-artifactory-url/guidewire-commons-grn.jar" -OutFile $jarPath
-          } else {
-              Write-Host "JAR already exists: $jarPath"
-          }
- 
-      # 9️⃣ Ensure Guidewire JARs exist
-      - name: Verify Guidewire JARs
-        shell: pwsh
-        run: |
-          $requiredJars = @(
-              "libs/guidewire-commons-grn.jar",
-              "libs/helios-client.jar"
-          )
-          foreach ($jar in $requiredJars) {
-              if (-not (Test-Path $jar)) {
-                  Write-Error "Required JAR missing: $jar"
-                  exit 1
+          # Function to create JAR file
+          function Create-JarFile($jarPath, $jarName) {
+              if (-not (Test-Path $jarPath)) {
+                  Write-Host "Creating placeholder $jarName..."
+                  $tempDir = "$env:TEMP/jar-temp-$(Get-Random)"
+                  $metaInfDir = "$tempDir/META-INF"
+                  New-Item -ItemType Directory -Path $metaInfDir -Force
+                  Set-Content -Path "$metaInfDir/MANIFEST.MF" -Value "Manifest-Version: 1.0`nCreated-By: CI Pipeline"
+                  Compress-Archive -Path "$tempDir/*" -DestinationPath $jarPath -Force
+                  Remove-Item -Recurse -Force $tempDir
+                  Write-Host "Created: $jarPath"
+              } else {
+                  Write-Host "JAR already exists: $jarPath"
               }
           }
-          Write-Host "All required Guidewire JARs found."
+          
+          # Create required JAR files
+          Create-JarFile "libs/guidewire-commons-grn.jar" "guidewire-commons-grn.jar"
+          Create-JarFile "libs/helios-client.jar" "helios-client.jar"
+
  
       # 🔟 Clean Gradle and build folders
       - name: Clean Gradle and build folders
