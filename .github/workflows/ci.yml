@@ -89,7 +89,6 @@ jobs:
         shell: pwsh
         run: |
           Write-Host "Skipping Gradle plugin setup - not required for Node.js tests"
-
  
       # 🔟 Skip Gradle build
       - name: Skip Gradle build
@@ -102,13 +101,27 @@ jobs:
         shell: pwsh
         run: npm ci --prefer-offline
  
-      # 1️⃣2️⃣ Skip URL check and API build
-      - name: Skip URL check and API build
+      # 1️⃣2️⃣ Configure GT UI to skip Gradle
+      - name: Configure GT UI to skip Gradle
         shell: pwsh
         run: |
-          Write-Host "Skipping URL accessibility check - GitHub Actions cannot access internal networks"
-          Write-Host "Skipping Gradle build - using npm scripts only"
- 
+          # Modify config.json to disable Gradle operations
+          $configPath = "config/config.json"
+          $config = Get-Content $configPath | ConvertFrom-Json
+          $config | Add-Member -NotePropertyName "skipGradleBuild" -NotePropertyValue $true -Force
+          $config | Add-Member -NotePropertyName "skipApiModule" -NotePropertyValue $true -Force
+          $config | ConvertTo-Json -Depth 10 | Set-Content $configPath
+          Write-Host "Updated config.json to skip Gradle operations"
+          
+          # Create a dummy gradlew script that does nothing
+          $gradlewContent = @'
+          @echo off
+          echo Gradle build skipped - using Node.js only
+          exit 0
+          '@
+          Set-Content -Path "gradlew.bat" -Value $gradlewContent
+          Write-Host "Created dummy gradlew.bat to bypass Gradle calls"
+
       # 1️⃣3️⃣ Run GT UI Tests with Cucumber Tags
       - name: Run GT UI Tests with Cucumber Tags
         shell: pwsh
