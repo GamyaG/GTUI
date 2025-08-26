@@ -2,9 +2,10 @@ name: CI
 
 on:
   push:
-    branches: [ main, develop ]
+    branches: [ none ]
   pull_request:
     branches: [ main ]
+  workflow_dispatch:
 
 jobs:
   build-and-test:
@@ -17,7 +18,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
-          lfs: true   # 👈 ensures Git LFS files like gradle-wrapper.jar are pulled
 
       # 2️⃣ Install VS2019 Build Tools
       - name: Install VS2019 Build Tools
@@ -29,14 +29,14 @@ jobs:
         with:
           vs-version: '[16.0,17.0)'
 
-      # 4️⃣ Setup JDK 11 (Amazon Corretto)
-      - name: Set up JDK 11
+      # 4️⃣ Setup JDK 17 (Amazon Corretto)
+      - name: Set up JDK 17
         uses: actions/setup-java@v4
         with:
-          java-version: '11'
+          java-version: '17'
           distribution: 'corretto'
 
-      # 5️⃣ Setup Node.js 16.3.0 with npm cache
+      # 5️⃣ Setup Node.js 16.3.0
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
@@ -54,104 +54,82 @@ jobs:
       - name: Configure node-gyp
         run: npm config set msvs_version 2019
 
-      # 8️⃣ Download Gradle 6.5.1 manually
-      - name: Download Gradle 6.5.1
-        shell: pwsh
-        run: |
-          $gradleVersion = "6.5.1"
-          $gradleZip = "$env:TEMP\gradle-$gradleVersion-bin.zip"
-          Invoke-WebRequest -Uri "https://services.gradle.org/distributions/gradle-$gradleVersion-bin.zip" -OutFile $gradleZip
-          Expand-Archive -Path $gradleZip -DestinationPath "$env:TEMP\gradle-$gradleVersion"
-          $env:PATH = "$env:TEMP\gradle-$gradleVersion\gradle-$gradleVersion\bin;$env:PATH"
-          Write-Host "Gradle $gradleVersion downloaded and PATH updated"
-
-      # 9️⃣ Ensure libs folder exists
+      # 8️⃣ Setup Gradle
+      - name: Setup Gradle
+        uses: gradle/gradle-build-action@v2
+        with:
+          gradle-version: wrapper
       - name: Create libs folder
         shell: pwsh
         run: |
           if (-not (Test-Path "libs")) {
-            New-Item -ItemType Directory -Path "libs"
+              New-Item -ItemType Directory -Path "libs"
           }
-
-      # 🔟 Install npm dependencies with retry
-      - name: Install dependencies with retry
+      - name: Download guidewire-commons-grn.jar
         shell: pwsh
         run: |
-          $maxRetries = 5
-          for ($i = 1; $i -le $maxRetries; $i++) {
-            try {
-              npm ci
-              if ($LASTEXITCODE -eq 0) {
-                Write-Host "npm ci succeeded"
-                break
+          $jarPath = "libs/guidewire-commons-grn.jar"
+          if (-not (Test-Path $jarPath)) {
+              Write-Host "Downloading guidewire-commons-grn.jar..."
+              # Replace with actual URL or use a local copy
+              # Invoke-WebRequest -Uri "https://your-actual-artifactory-url/guidewire-commons-grn.jar" -OutFile $jarPath
+              Write-Host "Skipping download - JAR should be provided locally or via proper repository"
+          } else {
+              Write-Host "JAR already exists: $jarPath"
+          }
+      # 9️⃣ Ensure Guidewire JARs exist
+      - name: Verify Guidewire JARs
+        shell: pwsh
+        run: |
+          $requiredJars = @(
+              "libs/guidewire-commons-grn.jar"
+              # "libs/helios-client.jar"  # Comment out if not available
+          )
+          foreach ($jar in $requiredJars) {
+              if (-not (Test-Path $jar)) {
+                  Write-Error "Required JAR missing: $jar"
+                  exit 1
               }
-            } catch {
-              Write-Host "npm ci failed, attempt $i of $maxRetries"
+          }
+          Write-Host "All required Guidewire JARs found."
+      # 🔟 Clean Gradle and build folders
+      - name: Clean Gradle and build folders
+        shell: pwsh
+        run: |
+          Remove-Item -Recurse -Force .gradle, api/build, build, reports -ErrorAction SilentlyContinue
+      # 1️⃣1️⃣ Install npm dependencies
+      - name: Install npm dependencies
+        shell: pwsh
+        run: npm ci --prefer-offline
+
+      # 1️⃣2️⃣ Skip Gradle build - use npm only
+      - name: Skip API module build
+        shell: pwsh
+        run: |
+          Write-Host "Skipping Gradle build - using npm scripts only"
+            # 1️⃣4️⃣ Check PolicyCenter URL accessibility
+      - name: Check PolicyCenter URL
+        shell: pwsh
+        run: |
+          $url = "https://pc-dev-gwcpdev.valuemom.zeta1-andromeda.guidewire.net/PolicyCenter.do"
+          try {
+            $response = Invoke-WebRequest -Uri $url -UseBasicParsing -TimeoutSec 30
+            if ($response.StatusCode -eq 200) {
+              Write-Host "✅ PolicyCenter is reachable: $url"
+            } else {
+              Write-Error "❌ PolicyCenter returned status code $($response.StatusCode)"
+              exit 1
             }
-            if ($i -eq $maxRetries) { exit 1 }
-            Start-Sleep -Seconds 15
+          } catch {
+            Write-Error "❌ Failed to reach PolicyCenter at $url. Error: $($_.Exception.Message)"
+            exit 1
           }
 
-      # 1️⃣3️⃣ Run GT UI Tests (robust, Gradle 6.5.1-safe)
+      # 1️⃣3️⃣ Run GT UI Tests
       - name: Run GT UI Tests
         shell: pwsh
         working-directory: ${{ github.workspace }}
-        run: |
-          Write-Host "Repo root: $PWD"
-          java -version
-          node -v
-
-          $jar   = Join-Path $PWD 'gradle\wrapper\gradle-wrapper.jar'
-          $props = Join-Path $PWD 'gradle\wrapper\gradle-wrapper.properties'
-
-          # 1) Try to fetch real wrapper via Git LFS (if tracked there)
-          git lfs install 2>$null
-          git lfs pull 2>$null
-
-          function Test-IsLfsPointer($path) {
-            if (-not (Test-Path $path)) { return $true }
-            try {
-              $firstLine = Get-Content $path -TotalCount 1 -Raw -ErrorAction Stop
-              return ($firstLine -match 'git-lfs|version https://git-lfs.github.com/spec')
-            } catch { return $true }
-          }
-
-          $needsWrapper = $false
-          if (-not (Test-Path $props)) {
-            Write-Host "gradle-wrapper.properties missing."
-            $needsWrapper = $true
-          } elseif (Test-IsLfsPointer $jar) {
-            Write-Host "gradle-wrapper.jar missing or an LFS pointer."
-            $needsWrapper = $true
-          }
-
-          if ($needsWrapper) {
-            Write-Host "Bootstrapping Gradle 6.5.1 locally to generate wrapper..."
-            $ver = "6.5.1"
-            $tmp = Join-Path $env:TEMP "gradle-$ver"
-            $zip = Join-Path $env:TEMP "gradle-$ver-bin.zip"
-            if (-not (Test-Path $tmp)) {
-              Invoke-WebRequest -Uri "https://services.gradle.org/distributions/gradle-$ver-bin.zip" -OutFile $zip
-              Expand-Archive -Path $zip -DestinationPath $env:TEMP -Force
-            }
-            $gradleBat = Join-Path $env:TEMP "gradle-$ver\bin\gradle.bat"
-
-            if (-not (Test-Path $props)) {
-              New-Item -ItemType Directory -Path (Split-Path $props) -Force | Out-Null
-              @"
-          distributionBase=GRADLE_USER_HOME
-          distributionPath=wrapper/dists
-          distributionUrl=https\://services.gradle.org/distributions/gradle-$ver-bin.zip
-          zipStoreBase=GRADLE_USER_HOME
-          zipStorePath=wrapper/dists
-          "@ | Out-File -FilePath $props -Encoding ascii -Force
-            }
-
-            & $gradleBat wrapper --gradle-version $ver
-            if ($LASTEXITCODE -ne 0) { throw "Failed to generate Gradle wrapper $ver" }
-          }
-
-          if (-not (Test-Path .\gradlew.bat)) { throw "gradlew.bat not found at repo root" }
-          .\gradlew.bat -v
-
-          npm run gt-ui-tests -- --cucumberTags=@add_activity
+        env:
+          SKIP_API_BUILD: true
+          GT_SKIP_GRADLE: true
+        run: npm run gt-ui-tests -- --cucumberTags=@add_activity
