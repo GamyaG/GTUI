@@ -109,23 +109,20 @@ jobs:
  
       
  
-      # 1️⃣3️⃣ Run GT UI Tests
+      # 1️⃣3️⃣ Run GT UI Tests (bypass Gradle)
       - name: Run GT UI Tests
         shell: pwsh
         working-directory: ${{ github.workspace }}
         env:
-          SKIP_API_BUILD: "true"
-          GT_SKIP_GRADLE: "true"
-          GT_SKIP_API_BUILD: "true"
-          GRADLE_OPTS: "-Dorg.gradle.daemon=false"
           CC_URL: https://cc-dev-gwcpdev.valuemom.zeta1-andromeda.guidewire.net/ClaimCenter.do
           USERNAME: uw
           PASSWORD: gw
         run: |
-          # Set environment variables in PowerShell session
-          $env:SKIP_API_BUILD = "true"
-          $env:GT_SKIP_GRADLE = "true"
-          $env:GT_SKIP_API_BUILD = "true"
-          
-          # Run tests
-          npm run gt-ui-tests -- --cucumberTags=@add_activity --pageRequestTimeout=60000 --retryTestPages
+          # Try to run tests without Gradle build
+          try {
+              Write-Host "Attempting to run tests with npm script..."
+              npm run gt-ui-dev-tests -- --tests="ui/tests/**/*.js" --browser=chrome:headless
+          } catch {
+              Write-Host "npm script failed, trying direct testcafe..."
+              npx testcafe chrome:headless "ui/tests/**/*.js" --reporter spec
+          }
