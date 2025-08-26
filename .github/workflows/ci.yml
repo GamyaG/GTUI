@@ -103,9 +103,12 @@ jobs:
           $jar = Join-Path $PWD 'gradle\wrapper\gradle-wrapper.jar'
           $props = Join-Path $PWD 'gradle\wrapper\gradle-wrapper.properties'
 
+          # Point to the manually downloaded Gradle 6.5.1
+          $gradleBin = "$env:TEMP\gradle-6.5.1\gradle-6.5.1\bin\gradle.bat"
+
           if (-not (Test-Path $props)) {
-            Write-Host "gradle-wrapper.properties missing -> generating wrapper (6.5.1)"
-            gradle wrapper --gradle-version 6.5.1
+            Write-Host "gradle-wrapper.properties missing -> generating wrapper (6.5.1) with local Gradle"
+            & $gradleBin wrapper --gradle-version 6.5.1
           }
 
           if (-not (Test-Path $jar)) {
@@ -123,8 +126,8 @@ jobs:
           }
 
           if ((-not (Test-Path $jar)) -or $isPointer) {
-            Write-Host "gradle-wrapper.jar is missing or an LFS pointer -> generating wrapper (6.5.1)"
-            gradle wrapper --gradle-version 6.5.1
+            Write-Host "gradle-wrapper.jar is missing or an LFS pointer -> regenerating wrapper (6.5.1)"
+            & $gradleBin wrapper --gradle-version 6.5.1
           }
 
           .\gradlew.bat -v
