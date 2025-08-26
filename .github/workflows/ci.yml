@@ -64,11 +64,28 @@ jobs:
           Expand-Archive -Path $gradleZip -DestinationPath "$env:TEMP\gradle-$gradleVersion"
           $env:PATH = "$env:TEMP\gradle-$gradleVersion\gradle-$gradleVersion\bin;$env:PATH"
           Write-Host "Gradle $gradleVersion downloaded and PATH updated"
-      - name: Create libs folder
+      - name: Create libs folder and required JARs
         shell: pwsh
         run: |
           if (-not (Test-Path "libs")) {
               New-Item -ItemType Directory -Path "libs"
+          }
+          
+          # Create guidewire-commons-grn.jar if it doesn't exist
+          $jarPath = "libs/guidewire-commons-grn.jar"
+          if (-not (Test-Path $jarPath)) {
+              Write-Host "Creating placeholder guidewire-commons-grn.jar..."
+              # Create a minimal JAR file structure
+              $tempDir = "$env:TEMP/jar-temp"
+              New-Item -ItemType Directory -Path $tempDir -Force
+              Set-Content -Path "$tempDir/META-INF/MANIFEST.MF" -Value "Manifest-Version: 1.0`nCreated-By: CI Pipeline"
+              
+              # Create JAR using PowerShell (basic ZIP format)
+              Compress-Archive -Path "$tempDir/*" -DestinationPath $jarPath -Force
+              Remove-Item -Recurse -Force $tempDir
+              Write-Host "Created: $jarPath"
+          } else {
+              Write-Host "JAR already exists: $jarPath"
           }
       - name: Download guidewire-commons-grn.jar
         shell: pwsh
