@@ -1,12 +1,12 @@
 [
   {
-    "description": "Feature: Commercial property new submission",
+    "description": "Feature: Add Activity in Claim center",
     "elements": [
       {
-        "id": "ScenarioCommercial property new submission;Scenario: Creating commercial property quote",
+        "id": "ScenarioAdd Activity in Claim center;Scenario: Adding the activity",
         "keyword": "Scenario",
         "line": 0,
-        "name": "Creating commercial property quote",
+        "name": "Adding the activity",
         "skipped": false,
         "sourceLine": "undefined",
         "status": "passed",
@@ -15,138 +15,16 @@
             "hidden": false,
             "keyword": ">",
             "match": {
-              "location": "C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\behavior\\features\\gw\\designatedFunctions\\GoCommercialProperty\\pc\\NewSubmission.feature:1:0"
+              "location": "C:\\gtuicicd\\GTUI\\behavior\\features\\gw\\designatedFunctions\\LOBAgnostic\\cc\\Activity.feature:1:0"
             },
-            "name": "Scenario: Creating commercial property quote",
+            "name": "Scenario: Adding the activity",
             "result": {
-              "duration": 113349,
+              "duration": 90507,
               "status": "passed"
             },
             "tags": [],
             "text": [
-              "<a href=\"#\">Scenario: Creating commercial property quote</a>"
-            ]
-          }
-        ],
-        "tags": [],
-        "type": "scenario",
-        "uri": ""
-      },
-      {
-        "id": "ScenarioCommercial property new submission;Scenario: Creating commercial property bind",
-        "keyword": "Scenario",
-        "line": 0,
-        "name": "Creating commercial property bind",
-        "skipped": false,
-        "sourceLine": "undefined",
-        "status": "passed",
-        "steps": [
-          {
-            "hidden": false,
-            "keyword": ">",
-            "match": {
-              "location": "C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\behavior\\features\\gw\\designatedFunctions\\GoCommercialProperty\\pc\\NewSubmission.feature:1:0"
-            },
-            "name": "Scenario: Creating commercial property bind",
-            "result": {
-              "duration": 90560,
-              "status": "passed"
-            },
-            "tags": [],
-            "text": [
-              "<a href=\"#\">Scenario: Creating commercial property bind</a>"
-            ]
-          }
-        ],
-        "tags": [],
-        "type": "scenario",
-        "uri": ""
-      },
-      {
-        "id": "ScenarioCommercial property new submission;Scenario: Issuing commercial property from actions menu",
-        "keyword": "Scenario",
-        "line": 0,
-        "name": "Issuing commercial property from actions menu",
-        "skipped": false,
-        "sourceLine": "undefined",
-        "status": "passed",
-        "steps": [
-          {
-            "hidden": false,
-            "keyword": ">",
-            "match": {
-              "location": "C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\behavior\\features\\gw\\designatedFunctions\\GoCommercialProperty\\pc\\NewSubmission.feature:1:0"
-            },
-            "name": "Scenario: Issuing commercial property from actions menu",
-            "result": {
-              "duration": 88582,
-              "status": "passed"
-            },
-            "tags": [],
-            "text": [
-              "<a href=\"#\">Scenario: Issuing commercial property from actions menu</a>"
-            ]
-          }
-        ],
-        "tags": [],
-        "type": "scenario",
-        "uri": ""
-      },
-      {
-        "id": "ScenarioCommercial property new submission;Scenario: Issuing commercial property with multiple buildings",
-        "keyword": "Scenario",
-        "line": 0,
-        "name": "Issuing commercial property with multiple buildings",
-        "skipped": false,
-        "sourceLine": "undefined",
-        "status": "failed",
-        "steps": [
-          {
-            "hidden": false,
-            "keyword": ">",
-            "match": {
-              "location": "C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\behavior\\features\\gw\\designatedFunctions\\GoCommercialProperty\\pc\\NewSubmission.feature:1:0"
-            },
-            "name": "Scenario: Issuing commercial property with multiple buildings",
-            "result": {
-              "duration": 140405,
-              "error_message": "1) The specified selector does not match any element in the DOM tree.\n\n    > | Selector('#LocationPopup-LocationScreen-LocationDe...)\n      |   .find('input')\n\n   Browser: Chrome 128.0.0.0 / Windows 10\n\n       95 |            if (await dataMap.has(fieldName))\n       96 |                await ModIdentifier.building[camelFieldName].setValue(await dataMap.get(fieldName))\n       97 |            break;\n       98 |        case ('Location'):\n       99 |            if (await dataMap.has(fieldName))\n   --------------------------------------------\n    &rarr; 100 |                await ModIdentifier.building[camelFieldName].setValue(await dataMap.get(fieldName))\n   --------------------------------------------\n      101 |            break;\n      102 |        case ('Drivers'):\n      103 |            if (await dataMap.has(fieldName))\n      104 |                await ModIdentifier.driver[camelFieldName].setValue(await dataMap.get(fieldName))\n      105 |            break;\n\n      at <anonymous> (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\ui\\util\\gw\\ActionHelper.js:100:62)\n      at asyncGeneratorStep (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\ui\\util\\gw\\ActionHelper.js:7:30)\n      at _next (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\ui\\util\\gw\\ActionHelper.js:7:30)",
-              "status": "failed"
-            },
-            "tags": [],
-            "text": [
-              "<a href=\"#\">Scenario: Issuing commercial property with multiple buildings</a>"
-            ]
-          }
-        ],
-        "tags": [],
-        "type": "scenario",
-        "uri": ""
-      },
-      {
-        "id": "ScenarioCommercial property new submission;Scenario: Issuing commercial property with multiple location",
-        "keyword": "Scenario",
-        "line": 0,
-        "name": "Issuing commercial property with multiple location",
-        "skipped": false,
-        "sourceLine": "undefined",
-        "status": "failed",
-        "steps": [
-          {
-            "hidden": false,
-            "keyword": ">",
-            "match": {
-              "location": "C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\behavior\\features\\gw\\designatedFunctions\\GoCommercialProperty\\pc\\NewSubmission.feature:1:0"
-            },
-            "name": "Scenario: Issuing commercial property with multiple location",
-            "result": {
-              "duration": 141368,
-              "error_message": "1) The specified selector does not match any element in the DOM tree.\n\n    > | Selector('#LocationPopup-LocationScreen-LocationDe...)\n      |   .find('input')\n\n   Browser: Chrome 128.0.0.0 / Windows 10\n\n       95 |            if (await dataMap.has(fieldName))\n       96 |                await ModIdentifier.building[camelFieldName].setValue(await dataMap.get(fieldName))\n       97 |            break;\n       98 |        case ('Location'):\n       99 |            if (await dataMap.has(fieldName))\n   --------------------------------------------\n    &rarr; 100 |                await ModIdentifier.building[camelFieldName].setValue(await dataMap.get(fieldName))\n   --------------------------------------------\n      101 |            break;\n      102 |        case ('Drivers'):\n      103 |            if (await dataMap.has(fieldName))\n      104 |                await ModIdentifier.driver[camelFieldName].setValue(await dataMap.get(fieldName))\n      105 |            break;\n\n      at <anonymous> (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\ui\\util\\gw\\ActionHelper.js:100:62)\n      at asyncGeneratorStep (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\ui\\util\\gw\\ActionHelper.js:7:30)\n      at _next (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\ui\\util\\gw\\ActionHelper.js:7:30)",
-              "status": "failed"
-            },
-            "tags": [],
-            "text": [
-              "<a href=\"#\">Scenario: Issuing commercial property with multiple location</a>"
+              "<a href=\"#\">Scenario: Adding the activity</a>"
             ]
           }
         ],
@@ -155,14 +33,14 @@
         "uri": ""
       }
     ],
-    "id": "Feature: Commercial property new submission",
+    "id": "Feature: Add Activity in Claim center",
     "keyword": "Feature",
     "line": 0,
     "metadata": {
       "app": {},
       "browser": {
         "name": "chrome",
-        "version": "128.0.0.0"
+        "version": "139.0.0.0"
       },
       "device": "Windows",
       "platform": {
@@ -170,57 +48,117 @@
         "version": "10"
       }
     },
-    "name": "Commercial property new submission",
+    "name": "Add Activity in Claim center",
+    "skipped": false,
+    "tags": [
+      {
+        "line": 0,
+        "name": "@add"
+      },
+      {
+        "line": 0,
+        "name": "@activity"
+      },
+      {
+        "line": 0,
+        "name": "@claim"
+      },
+      {
+        "line": 0,
+        "name": "@center"
+      },
+      {
+        "line": 0,
+        "name": "@adding"
+      }
+    ],
+    "uri": "C:\\gtuicicd\\GTUI\\behavior\\features\\gw\\designatedFunctions\\LOBAgnostic\\cc\\Activity.feature:1"
+  },
+  {
+    "description": "Feature: Add activity in policy center",
+    "elements": [
+      {
+        "id": "ScenarioAdd activity in policy center;Scenario: Adding the activity from the account level",
+        "keyword": "Scenario",
+        "line": 0,
+        "name": "Adding the activity from the account level",
+        "skipped": false,
+        "sourceLine": "undefined",
+        "status": "failed",
+        "steps": [
+          {
+            "hidden": false,
+            "image": [
+              "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAB4AAAAM6CAYAAABgvF7GAABPK0lEQVR4AezBB7zfBWEv7O//d3ZysnfIIJO9QwBZMkVFr6OtglUEV3vtslqrvW1t69ve1tt7r/e+dipWKSoFq6iAyFaC7LBJSEIG2TvnZJ2Ts97P6fv5+/mbEkhCgsnP53kqW9q29wUAAAAAAACAw14RAAAAAAAAAEqhCAAAAAAAAAClUAQAAAAAAACAUigCAAAAAAAAQCkUAQAAAAAAAKAUigAAAAAAAABQCkUAAAAAAAAAKIUiAAAAAAAAAJRCEQAAAAAAAABKoQgAAAAAAAAApVAEAAAAAAAAgFIoAgAAAAAAAEApFAEAAAAAAACgFIoAAAAAAAAAUApFAAAAAAAAACiFIgAAAAAAAACUQhEAAAAAAAAASqEIAAAAAAAAAKVQBAAAAAAAAIBSKAIAAAAAAABAKRQBAAAAAAAAoBSKAAAAAAAAAFAKRQAAAAAAAAAohSIAAAAAAAAAlEIRAAAAAAAAAEqhCAAAAAAAAAClUAQAAAAAAACAUigCAAAAAAAAQCkUAQAAAAAAAKAUigAAAAAAAABQCkUAAAAAAAAAKIUiAAAAAAAAAJRCEQAAAAAAAABKoQgAAAAAAAAApVAEAAAAAAAAgFIoAgAAAAAAAEApFAEAAAAAAACgFIoAAAAAAAAAUApFAAAAAAAAACiFIgAAAAAAAACUQhEAAAAAAAAASqEIAAAAAAAAAKVQBAAAAAAAAIBSKAIAAAAAAABAKRQBAAAAAAAAoBSKAAAAAAAAAFAKRQAAAAAAAAAohSIAAAAAAAAAlEIRAAAAAAAAAEqhCAAAAAAAAAClUAQAAAAAAACAUigCAAAAAAAAQCkUAQAAAAAAAKAUigAAAAAAAABQCkUAAAAAAAAAKIUiAAAAAAAAAJRCEQAAAAAAAABKoQgAAAAAAAAApVAEAAAAAAAAgFIoAgAAAAAAAEApFAEAAAAAAACgFIoAAAAAAAAAUApFAAAAAAAAACiFIgAAAAAAAACUQhEAAAAAAAAASqEIAAAAAAAAAKVQBAAAAAAAAIBSKAIAAAAAAABAKRQBAAAAAAAAoBSKAAAAAAAAAFAKRQAAAAAAAAAohSIAAAAAAAAAlEIRAAAAAAAAAEqhCAAAAAAAAAClUAQAAAAAAACAUigCAAAAAAAAQCkUAQAAAAAAAKAUigAAAAAAAABQCkUAAAAAAAAAKIUiAAAAAAAAAJRCEQAAAAAAAABKoQgAAAAAAAAApVAEAAAAAAAAgFIoAgAAAAAAAEApFAEAAAAAAACgFIoAAAAAAAAAUApFAAAAAAAAACiFIgAAAAAAAACUQhEAAAAAAAAASqEIAAAAAAAAAKVQBAAAAAAAAIBSKAIAAAAAAABAKRQBAAAAAAAAoBSKAAAAAAAAAFAKRQAAAAAAAAAohSIAAAAAAAAAlEIRAAAAAAAAAEqhCAAAAAAAAAClUAQAAAAAAACAUigCAAAAAAAAQCkUAQAAAAAAAKAUigAAAAAAAABQCkUAAAAAAAAAKIUiAAAAAAAAAJRCEQAAAAAAAABKoQgAAAAAAAAApVAEAAAAAAAAgFIoAgAAAAAAAEApFAEAAAAAAACgFIoAAAAAAAAAUApFAAAAAAAAACiFIgAAAAAAAACUQhEAAAAAAAAASqEIAAAAAAAAAKVQBAAAAAAAAIBSKAIAAAAAAABAKRQBAAAAAAAAoBSKAAAAAAAAAFAKRQAAAAAAAAAohSIAAAAAAAAAlEIRAAAAAAAAAEqhCAAAAAAAAAClUAQAAAAAAACAUigCAAAAAAAAQCkUAQAAAAAAAKAUigAAAAAAAABQCkUAAAAAAAAAKIUiAAAAAAAAAJRCEQAAAAAAAABKoQgAAAAAAAAApVAEAAAAAAAAgFIoAgAAAAAAAEApFAEAAAAAAACgFIoAAAAAAAAAUApFAAAAAAAAACiFIgAAAAAAAACUQhEAAAAAAAAASqEIAAAAAAAAAKVQBAAAAAAAAIBSKAIAAAAAAABAKRQBAAAAAAAAoBSKAAAAAAAAAFAKRQAAAAAAAAAohSIAAAAAAAAAlEIRAAAAAAAAAEqhCAAAAAAAAAClUAQAAAAAAACAUigCAAAAAAAAQCkUAQAAAAAAAKAUigAAAAAAAABQCkUAAAAAAAAAKIUiAAAAAAAAAJRCEQAAAAAAAABKoQgAAAAAAAAApVAEAAAAAAAAgFIoAgAAAAAAAEApFAEAAAAAAACgFIoAAAAAAAAAUApFAAAAAAAAACiFIgAAAAAAAACUQhEAAAAAAAAASqEIAAAAAAAAAKVQBAAAAAAAAIBSKAIAAAAAAABAKRQBAAAAAAAAoBSKAAAAAAAAAFAKRQAAAAAAAAAohSIA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0IUKAAAAAAAAAF2oAAAAAAAAANCFCgAAAAAAAABdqAAAAAAAAADQhQoAAAAAAAAAXagAAAAAAAAA0IUKAAAAAAAAAF2oAAAAAAAAANCFCgAAAAAAAABdqAAAAAAAAADQhQoAAAAAAAAAXagAAAAAAAAA0IUKAAAAAAAAAF2oAAAAAAAAANCFCgAAAAAAAABdqAAAAAAAAADQhQoAAAAAAAAAXagAAAAAAAAA0IUKAAAAAAAAAF2oAAAAAAAAANCFCgAAAAAAAABdqAAAAAAAAADQhQoAAAAAAAAAXagAAAAAAAAA0IUKAAAAAAAAAF2oAAAAAAAAANCFCgAAAAAAAABdqAAAAAAAAADQhQoAAAAAAAAAXagAAAAAAAAA0IUKAAAAAAAAAF2oAAAAAAAAANCFCgAAAAAAAABdqAAAAAAAAADQhQoAAAAAAAAAXagAAAAAAAAA0IUKAAAAAAAAAF2oAAAAAAAAANCFCgAAAAAAAABdqAAAAAAAAADQhQoAAAAAAAAAXagAAAAAAAAA0IUKAAAAAAAAAF2oAAAAAAAAANCFCgAAAAAAAABdqAAAAAAAAADQhQoAAAAAAAAAXagAAAAAAAAA0IUKAAAAAAAAAF2oAAAAAAAAANCFCgAAAAAAAABdqAAAAAAAAADQhQoAAAAAAAAAXagAAAAAAAAA0IUKAAAAAAAAAF2oAAAAAAAAANCFCgAAAAAAAABdqAAAAAAAAADQhQoAAAAAAAAAXagAAAAAAAAA0IUKAAAAAAAAAF2oAAAAAAAAANCFCgAAAAAAAABdqAAAAAAAAADQhQoAAAAAAAAAXagAAAAAAAAA0IUKAAAAAAAAAF2oAAAAAAAAANCFCgAAAAAAAABdqAAAAAAAAADQhQoAAAAAAAAAXagAAAAAAAAA0IUKAAAAAAAAAF2oAAAAAAAAANCFCgAAAAAAAABdqAAAAAAAAADQhQoAAAAAAAAAXagAAAAAAAAA0IUKAAAAAAAAAF2oAAAAAAAAANCFCgAAAAAAAABdqAAAAAAAAADQhQoAAAAAAAAAXagAAAAAAAAA0IUKAAAAAAAAAF2oAAAAAAAAANCFCgAAAAAAAABdqAAAAAAAAADQhQoAAAAAAAAAXagAAAAAAAAA0IUKAAAAAAAAAF2oAAAAAAAAANCFCgAAAAAAAABdqAAAAAAAAADQhQoAAAAAAAAAXagAAAAAAAAA0IUKAAAAAAAAAF2oAAAAAAAAANCFCgAAAAAAAABdqAAAAAAAAADQhQoAAAAAAAAAXagAAAAAAAAA0IUKAAAAAAAAAF2oAAAAAAAAANCFCgAAAAAAAABdqAAAAAAAAADQhQoAAAAAAAAAXagAAAAAAAAA0IUKAAAAAAAAAF2oAAAAAAAAANCFCgAAAAAAAABdqAAAAAAAAADQhQoAAAAAAAAAXagAAAAAAAAA0IUKAAAAAAAAAF2oAAAAAAAAANCFCgAAAAAAAABdqAAAAAAAAADQhQoAAAAAAAAAXagAAAAAAAAA0IUKAAAAAAAAAF2oAAAAAAAAANCFCgAAAAAAAABdqAAAAAAAAADQhQoAAAAAAAAAXagAAAAAAAAA0IUKAAAAAAAAAF2oAAAAAAAAANCFCgAAAAAAAABdqAAAAAAAAADQhQoAAAAAAAAAXagAAAAAAAAA0IUKAAAAAAAAAF2oAAAAAAAAANCFCgAAAAAAAABdqAAAAAAAAADQhQoAAAAAAAAAXagAAAAAAAAA0IUKAAAAAAAAAF2oAAAAAAAAANCFCgAAAAAAAABdqAAAAAAAAADQhQoAAAAAAAAAXfgfmoh89fZF1XUAAAAASUVORK5CYII="
+            ],
+            "keyword": ">",
+            "match": {
+              "location": "C:\\gtuicicd\\GTUI\\behavior\\features\\gw\\designatedFunctions\\LOBAgnostic\\pc\\Activity.feature:1:0"
+            },
+            "name": "Scenario: Adding the activity from the account level",
+            "result": {
+              "duration": 83683,
+              "error_message": "1) The specified selector does not match any element in the DOM tree.\n\n    > | Selector('#TabBar-AccountTab > div.gw-action--expa...)\n\n   Browser: Chrome 139.0.0.0 / Windows 10\n   Screenshot: C:\\gtuicicd\\GTUI\\reports\\uibehaviortests\\screenshots\\2025-08-25_15-07-55\\test-2\\Chrome_139.0.0.0_Windows_10\\errors\\1.png\n\n      58 |    await renewal_New.NextRenewalWizard.click()\n      59 |  }\n      60 |\n      61 |  async navigateNewAccountScreen() {\n      62 |    console.log(\"On Enter Account Information Screen\")\n   --------------------------------------------\n    &rarr; 63 |    await newAccount_Ext.account_dropdown.click()\n   --------------------------------------------\n      64 |    await newAccount_Ext.acc_NewAccount.click()\n      65 |  }\n      66 |\n      67 |  async navigateSearchAccountScreen() {\n      68 |    await searchTabBar_Ext.tabBarSearchTab.click()\n\n      at <anonymous> (C:\\gtuicicd\\GTUI\\ui\\actions\\gw\\pc\\NavigationScenario.js:63:43)\n      at asyncGeneratorStep (C:\\gtuicicd\\GTUI\\ui\\actions\\gw\\pc\\NavigationScenario.js:20:67)\n      at _next (C:\\gtuicicd\\GTUI\\ui\\actions\\gw\\pc\\NavigationScenario.js:20:67)\n      at <anonymous> (C:\\gtuicicd\\GTUI\\ui\\actions\\gw\\pc\\NavigationScenario.js:20:67)\n      at <anonymous> (C:\\gtuicicd\\GTUI\\ui\\actions\\gw\\pc\\NavigationScenario.js:20:67)\n      at NavigationScenario.navigateNewAccountScreen (C:\\gtuicicd\\GTUI\\ui\\actions\\gw\\pc\\NavigationScenario.js:64:48)\n\n   Screenshot: C:\\gtuicicd\\GTUI\\reports\\uibehaviortests\\screenshots\\2025-08-25_15-07-55\\test-2\\Chrome_139.0.0.0_Windows_10\\errors\\1.png\n\n       4 |\n       5 |const accountScenario = new AccountScenario();\n       6 |const navigationScenario = new NavigationScenario();\n       7 |\n       8 |When('the user creates personal account', async function () {\n   --------------------------------------------\n    &rarr;  9 |    await navigationScenario.navigateNewAccountScreen()\n   --------------------------------------------\n      10 |    await accountScenario.createPersonalAccount()\n      11 |    await accountScenario.organizationSearchPopup()\n      12 |    await accountScenario.createAccountNumber()\n      13 |});\n      14 |\n\n      at <anonymous> (C:\\gtuicicd\\GTUI\\behavior\\steps\\gw\\pc\\AccountcreationSteps.js:9:30)\n      at asyncGeneratorStep (C:\\gtuicicd\\GTUI\\behavior\\steps\\gw\\pc\\AccountcreationSteps.js:2:86)\n      at _next (C:\\gtuicicd\\GTUI\\behavior\\steps\\gw\\pc\\AccountcreationSteps.js:2:86)\n      at <anonymous> (C:\\gtuicicd\\GTUI\\behavior\\steps\\gw\\pc\\AccountcreationSteps.js:2:86)\n      at <anonymous> (C:\\gtuicicd\\GTUI\\behavior\\steps\\gw\\pc\\AccountcreationSteps.js:2:86)",
+              "status": "failed"
+            },
+            "tags": [],
+            "text": [
+              "<a href=\"#\">Scenario: Adding the activity from the account level</a>"
+            ]
+          }
+        ],
+        "tags": [],
+        "type": "scenario",
+        "uri": ""
+      }
+    ],
+    "id": "Feature: Add activity in policy center",
+    "keyword": "Feature",
+    "line": 0,
+    "metadata": {
+      "app": {},
+      "browser": {
+        "name": "chrome",
+        "version": "139.0.0.0"
+      },
+      "device": "Windows",
+      "platform": {
+        "name": "windows",
+        "version": "10"
+      }
+    },
+    "name": "Add activity in policy center",
     "runInfo": {
-      "endTime": "2024-08-28T07:14:42.796Z",
-      "passed": 3,
-      "startTime": "2024-08-28T07:05:07.942Z",
-      "testCount": 5,
+      "endTime": "2025-08-25T09:40:50.962Z",
+      "passed": 1,
+      "startTime": "2025-08-25T09:37:56.577Z",
+      "testCount": 2,
       "userAgents": [
-        "Chrome 128.0.0.0 / Windows 10"
+        "Chrome 139.0.0.0 / Windows 10"
       ],
-      "warnings": [
-        "Was unable to take a screenshot due to an error.\n\nError: Unable to locate the page area in the browser window screenshot at C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\reports\\uibehaviortests\\screenshots\\2024-08-28_12-35-05\\test-2\\Chrome_128.0.0.0_Windows_10\\1.png, because the page area mark with ID 1675251257 is not found in the screenshot.\n    at calculateClipInfo (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\crop.js:119:19)\n    at Object.cropScreenshot (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\crop.js:136:18)\n    at C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\capturer.js:152:40\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at Capturer._capture (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\capturer.js:133:9)\n    at Capturer.captureAction (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\capturer.js:186:16)\n    at BrowserManipulationQueue._takeScreenshot (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\test-run\\browser-manipulation-queue.js:55:20)\n    at BrowserManipulationQueue._executeCommand (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\test-run\\browser-manipulation-queue.js:72:24)\n    at BrowserManipulationQueue.executePendingManipulation (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\test-run\\browser-manipulation-queue.js:112:24)\n    at TestRun.ready-for-browser-manipulation (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\test-run\\index.ts:1546:22)\n    at TestRun.handleServiceMessage (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe-hammerhead\\lib\\session\\index.js:72:20)\n    at Proxy._onServiceMessage (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe-hammerhead\\lib\\proxy\\index.js:131:32)",
-        "Was unable to take a screenshot due to an error.\n\nError: Unable to locate the page area in the browser window screenshot at C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\reports\\uibehaviortests\\screenshots\\2024-08-28_12-35-05\\test-3\\Chrome_128.0.0.0_Windows_10\\1.png, because the page area mark with ID 1036139276 is not found in the screenshot.\n    at calculateClipInfo (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\crop.js:119:19)\n    at Object.cropScreenshot (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\crop.js:136:18)\n    at C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\capturer.js:152:40\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at Capturer._capture (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\capturer.js:133:9)\n    at Capturer.captureAction (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\capturer.js:186:16)\n    at BrowserManipulationQueue._takeScreenshot (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\test-run\\browser-manipulation-queue.js:55:20)\n    at BrowserManipulationQueue._executeCommand (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\test-run\\browser-manipulation-queue.js:72:24)\n    at BrowserManipulationQueue.executePendingManipulation (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\test-run\\browser-manipulation-queue.js:112:24)\n    at TestRun.ready-for-browser-manipulation (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\test-run\\index.ts:1546:22)\n    at TestRun.handleServiceMessage (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe-hammerhead\\lib\\session\\index.js:72:20)\n    at Proxy._onServiceMessage (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe-hammerhead\\lib\\proxy\\index.js:131:32)",
-        "Was unable to take a screenshot due to an error.\n\nError: Unable to locate the page area in the browser window screenshot at C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\reports\\uibehaviortests\\screenshots\\2024-08-28_12-35-05\\test-4\\Chrome_128.0.0.0_Windows_10\\errors\\1.png, because the page area mark with ID 2435440230 is not found in the screenshot.\n    at calculateClipInfo (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\crop.js:119:19)\n    at Object.cropScreenshot (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\crop.js:136:18)\n    at C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\capturer.js:152:40\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at Capturer._capture (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\capturer.js:133:9)\n    at Capturer.captureError (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\capturer.js:190:16)\n    at BrowserManipulationQueue._takeScreenshot (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\test-run\\browser-manipulation-queue.js:55:20)\n    at BrowserManipulationQueue._executeCommand (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\test-run\\browser-manipulation-queue.js:83:24)\n    at BrowserManipulationQueue.executePendingManipulation (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\test-run\\browser-manipulation-queue.js:112:24)\n    at TestRun.ready-for-browser-manipulation (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\test-run\\index.ts:1546:22)\n    at TestRun.handleServiceMessage (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe-hammerhead\\lib\\session\\index.js:72:20)\n    at Proxy._onServiceMessage (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe-hammerhead\\lib\\proxy\\index.js:131:32)",
-        "Was unable to take a screenshot due to an error.\n\nError: Unable to locate the page area in the browser window screenshot at C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\reports\\uibehaviortests\\screenshots\\2024-08-28_12-35-05\\test-4\\Chrome_128.0.0.0_Windows_10\\errors\\2.png, because the page area mark with ID 3949280804 is not found in the screenshot.\n    at calculateClipInfo (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\crop.js:119:19)\n    at Object.cropScreenshot (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\crop.js:136:18)\n    at C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\capturer.js:152:40\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at Capturer._capture (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\capturer.js:133:9)\n    at Capturer.captureError (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\capturer.js:190:16)\n    at BrowserManipulationQueue._takeScreenshot (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\test-run\\browser-manipulation-queue.js:55:20)\n    at BrowserManipulationQueue._executeCommand (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\test-run\\browser-manipulation-queue.js:83:24)\n    at BrowserManipulationQueue.executePendingManipulation (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\test-run\\browser-manipulation-queue.js:112:24)\n    at TestRun.ready-for-browser-manipulation (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\test-run\\index.ts:1546:22)\n    at TestRun.handleServiceMessage (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe-hammerhead\\lib\\session\\index.js:72:20)\n    at Proxy._onServiceMessage (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe-hammerhead\\lib\\proxy\\index.js:131:32)",
-        "Was unable to take a screenshot due to an error.\n\nError: Unable to locate the page area in the browser window screenshot at C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\reports\\uibehaviortests\\screenshots\\2024-08-28_12-35-05\\test-5\\Chrome_128.0.0.0_Windows_10\\errors\\1.png, because the page area mark with ID 4269481600 is not found in the screenshot.\n    at calculateClipInfo (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\crop.js:119:19)\n    at Object.cropScreenshot (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\crop.js:136:18)\n    at C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\capturer.js:152:40\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at Capturer._capture (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\capturer.js:133:9)\n    at Capturer.captureError (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\capturer.js:190:16)\n    at BrowserManipulationQueue._takeScreenshot (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\test-run\\browser-manipulation-queue.js:55:20)\n    at BrowserManipulationQueue._executeCommand (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\test-run\\browser-manipulation-queue.js:83:24)\n    at BrowserManipulationQueue.executePendingManipulation (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\test-run\\browser-manipulation-queue.js:112:24)\n    at TestRun.ready-for-browser-manipulation (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\test-run\\index.ts:1546:22)\n    at TestRun.handleServiceMessage (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe-hammerhead\\lib\\session\\index.js:72:20)\n    at Proxy._onServiceMessage (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe-hammerhead\\lib\\proxy\\index.js:131:32)",
-        "Was unable to take a screenshot due to an error.\n\nError: Unable to locate the page area in the browser window screenshot at C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\reports\\uibehaviortests\\screenshots\\2024-08-28_12-35-05\\test-5\\Chrome_128.0.0.0_Windows_10\\errors\\2.png, because the page area mark with ID 2885710846 is not found in the screenshot.\n    at calculateClipInfo (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\crop.js:119:19)\n    at Object.cropScreenshot (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\crop.js:136:18)\n    at C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\capturer.js:152:40\n    at processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at Capturer._capture (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\capturer.js:133:9)\n    at Capturer.captureError (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\screenshots\\capturer.js:190:16)\n    at BrowserManipulationQueue._takeScreenshot (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\test-run\\browser-manipulation-queue.js:55:20)\n    at BrowserManipulationQueue._executeCommand (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\test-run\\browser-manipulation-queue.js:83:24)\n    at BrowserManipulationQueue.executePendingManipulation (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\test-run\\browser-manipulation-queue.js:112:24)\n    at TestRun.ready-for-browser-manipulation (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe\\src\\test-run\\index.ts:1546:22)\n    at TestRun.handleServiceMessage (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe-hammerhead\\lib\\session\\index.js:72:20)\n    at Proxy._onServiceMessage (C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\node_modules\\testcafe-hammerhead\\lib\\proxy\\index.js:131:32)"
-      ]
+      "warnings": []
     },
     "skipped": false,
     "tags": [
       {
         "line": 0,
-        "name": "@commercial"
+        "name": "@add"
       },
       {
         "line": 0,
-        "name": "@property"
+        "name": "@activity"
       },
       {
         "line": 0,
-        "name": "@new"
+        "name": "@policy"
       },
       {
         "line": 0,
-        "name": "@submission"
+        "name": "@center"
       },
       {
         "line": 0,
-        "name": "@creating"
-      },
-      {
-        "line": 0,
-        "name": "@quote"
-      },
-      {
-        "line": 0,
-        "name": "@bind"
-      },
-      {
-        "line": 0,
-        "name": "@issuing"
+        "name": "@adding"
       },
       {
         "line": 0,
@@ -228,25 +166,13 @@
       },
       {
         "line": 0,
-        "name": "@actions"
+        "name": "@account"
       },
       {
         "line": 0,
-        "name": "@menu"
-      },
-      {
-        "line": 0,
-        "name": "@multiple"
-      },
-      {
-        "line": 0,
-        "name": "@buildings"
-      },
-      {
-        "line": 0,
-        "name": "@location"
+        "name": "@level"
       }
     ],
-    "uri": "C:\\Users\\RamyaMuralidharan\\GT_UI_Innsbruck_JS\\behavior\\features\\gw\\designatedFunctions\\GoCommercialProperty\\pc\\NewSubmission.feature:1"
+    "uri": "C:\\gtuicicd\\GTUI\\behavior\\features\\gw\\designatedFunctions\\LOBAgnostic\\pc\\Activity.feature:1"
   }
 ]
