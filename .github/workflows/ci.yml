@@ -54,16 +54,20 @@ jobs:
       - name: Configure node-gyp
         run: npm config set msvs_version 2019
  
-      # 8️⃣ Download Gradle 6.5.1 manually
-      - name: Download Gradle 6.5.1
+      # 8️⃣ Fix Gradle wrapper
+      - name: Fix Gradle wrapper
         shell: pwsh
         run: |
-          $gradleVersion = "6.5.1"
-          $gradleZip = "$env:TEMP\gradle-$gradleVersion-bin.zip"
-          Invoke-WebRequest -Uri "https://services.gradle.org/distributions/gradle-$gradleVersion-bin.zip" -OutFile $gradleZip
-          Expand-Archive -Path $gradleZip -DestinationPath "$env:TEMP\gradle-$gradleVersion"
-          $env:PATH = "$env:TEMP\gradle-$gradleVersion\gradle-$gradleVersion\bin;$env:PATH"
-          Write-Host "Gradle $gradleVersion downloaded and PATH updated"
+          # Download correct gradle-wrapper.jar for version 6.5.1
+          $wrapperUrl = "https://github.com/gradle/gradle/raw/v6.5.1/gradle/wrapper/gradle-wrapper.jar"
+          $wrapperPath = "gradle/wrapper/gradle-wrapper.jar"
+          
+          Write-Host "Downloading gradle-wrapper.jar..."
+          Invoke-WebRequest -Uri $wrapperUrl -OutFile $wrapperPath
+          
+          # Verify the wrapper works
+          Write-Host "Testing Gradle wrapper..."
+          ./gradlew --version
       - name: Create libs folder and required JARs
         shell: pwsh
         run: |
@@ -114,9 +118,18 @@ jobs:
         shell: pwsh
         working-directory: ${{ github.workspace }}
         env:
-          SKIP_API_BUILD: true
-          GT_SKIP_GRADLE: true
+          SKIP_API_BUILD: "true"
+          GT_SKIP_GRADLE: "true"
+          GT_SKIP_API_BUILD: "true"
+          GRADLE_OPTS: "-Dorg.gradle.daemon=false"
           CC_URL: https://cc-dev-gwcpdev.valuemom.zeta1-andromeda.guidewire.net/ClaimCenter.do
           USERNAME: uw
           PASSWORD: gw
-        run: npm run gt-ui-tests -- --cucumberTags=@add_activity --pageRequestTimeout=60000 --retryTestPages
+        run: |
+          # Set environment variables in PowerShell session
+          $env:SKIP_API_BUILD = "true"
+          $env:GT_SKIP_GRADLE = "true"
+          $env:GT_SKIP_API_BUILD = "true"
+          
+          # Run tests
+          npm run gt-ui-tests -- --cucumberTags=@add_activity --pageRequestTimeout=60000 --retryTestPages
